@@ -1,0 +1,102 @@
+/* --- 整體頁面基礎樣式 --- */
+body {
+    /* 設定字體，優先使用微軟正黑體 */
+    font-family: "Microsoft JhengHei", sans-serif;
+    /* 背景由 base.html 模板提供，此處不重複設定 */
+    /* 設定預設文字顏色 */
+    color: #2f4f4f;
+    /* 移除 body 預設的外邊距 */
+    margin: 0;
+    /* 確保 body 至少和視窗一樣高 */
+    min-height: 100vh;
+}
+
+/* --- 主要內容容器樣式 --- */
+.container {
+    max-width: 800px; /* 限制最大寬度 */
+    margin: 60px auto; /* 上下邊距 60px，左右自動，實現水平置中 */
+    padding: 30px; /* 內邊距 */
+    background: #ffffff; /* 白色背景 */
+    border-radius: 12px; /* 圓角 */
+    box-shadow: 0 0 15px rgba(0, 128, 96, 0.1); /* 淡綠色系的柔和陰影 */
+    text-align: center; /* 讓容器內的子元素 (如 h1, .search-area) 預設置中 */
+}
+
+/* --- 標題 h1 樣式 --- */
+h1 {
+    font-size: 2.2em; /* 字體大小 */
+    color: #116f6e; /* 標題顏色 */
+    margin-bottom: 30px; /* 與下方搜尋區的間距 */
+}
+
+/* --- 搜尋區域容器樣式 --- */
+.search-area {
+    margin-bottom: 20px; /* 與下方結果區的間距 */
+}
+
+/* --- 文字輸入框樣式 --- */
+input[type="text"] {
+    padding: 10px; /* 內邊距 */
+    font-size: 1rem; /* 字體大小 */
+    width: 250px; /* 固定寬度 */
+    border: 1px solid #88c9b5; /* 邊框顏色 */
+    border-radius: 6px; /* 圓角 */
+    margin-right: 10px; /* 與右側按鈕的間距 */
+    background-color: #ffffff;
+    /* 為多個 CSS 屬性設定平滑的過渡動畫效果 */
+    transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
+}
+
+/* 當文字輸入框獲得焦點 (focus) 時的樣式 */
+input[type="text"]:focus {
+    border-color: #3ca88c; /* 邊框變為更深的綠色 */
+    outline: none; /* 移除瀏覽器預設的外框 */
+    background-color: #f0fdf4; /* 背景變為極淡的綠色 */
+    box-shadow: 0 0 5px rgba(60, 168, 140, 0.3); /* 加上柔和的綠色光暈效果 */
+}
+
+/* --- 按鈕通用樣式 --- */
+button {
+    padding: 10px 20px; /* 內邊距 */
+    font-size: 1rem; /* 字體大小 */
+    background-color: #3ca88c; /* 背景色 */
+    color: white; /* 文字顏色 */
+    border: none; /* 移除邊框 */
+    border-radius: 6px; /* 圓角 */
+    cursor: pointer; /* 滑鼠移上去時顯示為手形指標 */
+    /* 為背景色和變形效果設定平滑的過渡動畫 */
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 2px 2px 5px rgba(0, 128, 96, 0.1); /* 細微的陰影 */
+}
+
+/* 按鈕滑鼠懸停 (hover) 效果 */
+button:hover {
+    background-color: #2f866d; /* 背景色變深 */
+    transform: scale(1.05); /* 按鈕稍微放大，產生互動感 */
+}
+
+/* --- 查詢結果區域容器樣式 --- */
+.result {
+    text-align: left; /* 讓結果區內的文字靠左對齊 */
+    margin-top: 20px; /* 與上方搜尋區的間距 */
+}
+
+/* --- 結果表格樣式 --- */
+table {
+    width: 100%; /* 表格寬度佔滿父容器 */
+    border-collapse: collapse; /* 將儲存格邊框合併為單一邊框 */
+    margin-top: 10px; /* 與標題的間距 */
+}
+
+/* 表格的表頭 (th) 和儲存格 (td) 的通用樣式 */
+th,
+td {
+    border: 1px solid #ccc; /* 灰色邊框 */
+    padding: 10px; /* 內邊距 */
+    text-align: center; /* 文字置中 */
+}
+
+/* 表格的表頭 (th) 獨有樣式 */
+th {
+    background-color: #e0f7f3; /* 設定表頭背景色，使其與內容區分 */
+}

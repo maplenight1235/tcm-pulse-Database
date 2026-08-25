@@ -1,0 +1,139 @@
+<!--
+    這個檔案繼承自 'base.html' 樣板。
+    'base.html' 提供了網站所有頁面共享的基礎 HTML 結構 (例如 <head>, <body>, 導覽列, 頁尾等)。
+-->
+{% extends 'base.html' %}
+
+<!--瀏覽器標籤頁上顯示的標題。-->
+{% block title %}新增病歷紀錄{% endblock %}
+
+<!-- 載入額外的 CSS 樣式表。-->
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='create.css') }}">
+{% endblock %}
+
+<!--主要內容區塊-->
+{% block content %}
+<div class="create-page">
+    <div class="container">
+        <h1>新增病歷紀錄</h1>
+
+        <form id="historyForm" class="forms-grid">
+            
+            <div class="form-box common">
+                <h2>病歷基本資料</h2>
+                <label for="ID">身分證號：</label>
+                <input type="text" id="ID" name="ID" maxlength="10" required>
+
+                <label for="date">日期：</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">時間：</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="description">症狀描述：</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+
+            <div id="form-cun" class="form-box">
+                <h2>寸部 (脈象資訊)</h2>
+                <label for="pulse_name_cun">脈象：</label>
+                <input type="text" id="pulse_name_cun" name="pulse_name_cun">
+
+                <label for="pulse_judgment_cun">脈象判斷：</label>
+                <textarea id="pulse_judgment_cun" name="pulse_judgment_cun" rows="3"></textarea>
+
+                <label for="diagnosis_cun">證候診斷：</label>
+                <textarea id="diagnosis_cun" name="diagnosis_cun" rows="3"></textarea>
+
+                <label for="recommended_herbs_cun">建議藥材：</label>
+                <textarea id="recommended_herbs_cun" name="recommended_herbs_cun" rows="3"></textarea>
+
+                <label for="decoction_cun">煎服方法：</label>
+                <textarea id="decoction_cun" name="decoction_cun" rows="2"></textarea>
+
+                <label for="caution_cun">用藥禁忌與注意事項：</label>
+                <textarea id="caution_cun" name="caution_cun" rows="2"></textarea>
+
+                <label for="heart_rate_bpm_cun">心率 (bpm)：</label>
+                <input type="number" id="heart_rate_bpm_cun" name="heart_rate_bpm_cun" step="0.01">
+
+                <label for="avg_amplitude_pa_cun">振幅 (Pa)：</label>
+                <input type="number" id="avg_amplitude_pa_cun" name="avg_amplitude_pa_cun" step="0.01">
+
+                <label for="avg_pressure_pa_cun">平均壓力 (Pa)：</label>
+                <input type="number" id="avg_pressure_pa_cun" name="avg_pressure_pa_cun" step="0.01">
+            </div>
+
+            <div id="form-guan" class="form-box">
+                <h2>關部 (脈象資訊)</h2>
+                <label for="pulse_name_guan">脈象：</label>
+                <input type="text" id="pulse_name_guan" name="pulse_name_guan">
+
+                <label for="pulse_judgment_guan">脈象判斷：</label>
+                <textarea id="pulse_judgment_guan" name="pulse_judgment_guan" rows="3"></textarea>
+
+                <label for="diagnosis_guan">證候診斷：</label>
+                <textarea id="diagnosis_guan" name="diagnosis_guan" rows="3"></textarea>
+
+                <label for="recommended_herbs_guan">建議藥材：</label>
+                <textarea id="recommended_herbs_guan" name="recommended_herbs_guan" rows="3"></textarea>
+
+                <label for="decoction_guan">煎服方法：</label>
+                <textarea id="decoction_guan" name="decoction_guan" rows="2"></textarea>
+
+                <label for="caution_guan">用藥禁忌與注意事項：</label>
+                <textarea id="caution_guan" name="caution_guan" rows="2"></textarea>
+
+                <label for="heart_rate_bpm_guan">心率 (bpm)：</label>
+                <input type="number" id="heart_rate_bpm_guan" name="heart_rate_bpm_guan" step="0.01">
+
+                <label for="avg_amplitude_pa_guan">振幅 (Pa)：</label>
+                <input type="number" id="avg_amplitude_pa_guan" name="avg_amplitude_pa_guan" step="0.01">
+
+                <label for="avg_pressure_pa_guan">平均壓力 (Pa)：</label>
+                <input type="number" id="avg_pressure_pa_guan" name="avg_pressure_pa_guan" step="0.01">
+            </div>
+
+            <div id="form-chi" class="form-box">
+                <h2>尺部 (脈象資訊)</h2>
+                <label for="pulse_name_chi">脈象：</label>
+                <input type="text" id="pulse_name_chi" name="pulse_name_chi">
+
+                <label for="pulse_judgment_chi">脈象判斷：</label>
+                <textarea id="pulse_judgment_chi" name="pulse_judgment_chi" rows="3"></textarea>
+
+                <label for="diagnosis_chi">證候診斷：</label>
+                <textarea id="diagnosis_chi" name="diagnosis_chi" rows="3"></textarea>
+
+                <label for="recommended_herbs_chi">建議藥材：</label>
+                <textarea id="recommended_herbs_chi" name="recommended_herbs_chi" rows="3"></textarea>
+
+                <label for="decoction_chi">煎服方法：</label>
+                <textarea id="decoction_chi" name="decoction_chi" rows="2"></textarea>
+
+                <label for="caution_chi">用藥禁忌與注意事項：</label>
+                <textarea id="caution_chi" name="caution_chi" rows="2"></textarea>
+
+                <label for="heart_rate_bpm_chi">心率 (bpm)：</label>
+                <input type="number" id="heart_rate_bpm_chi" name="heart_rate_bpm_chi" step="0.01">
+
+                <label for="avg_amplitude_pa_chi">振幅 (Pa)：</label>
+                <input type="number" id="avg_amplitude_pa_chi" name="avg_amplitude_pa_chi" step="0.01">
+
+                <label for="avg_pressure_pa_chi">平均壓力 (Pa)：</label>
+                <input type="number" id="avg_pressure_pa_chi" name="avg_pressure_pa_chi" step="0.01">
+            </div>
+
+            <div class="submit-wrapper">
+                <button type="submit">送出</button>
+                <div class="message" id="msgArea"></div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='create.js') }}"></script>
+{% endblock %}

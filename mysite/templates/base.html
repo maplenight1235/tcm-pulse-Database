@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{# 這是 Jinja2 樣板語言的註解，zh-Hant 表示繁體中文 #}
+<html lang="zh-Hant">
+
+<head>
+    {# 設定網頁使用 UTF-8 編碼，以正確顯示包含中文在內的各種字元 #}
+    <meta charset="UTF-8" />
+    
+    {# 
+        定義頁面標題區塊。
+        子樣板可以使用 {% block title %} 來覆寫這裡的預設標題。
+    #}
+    <title>{% block title %}中醫脈診系統{% endblock %}</title>
+
+
+    {# 
+        這裡是網站的基礎 CSS 樣式，定義了整體的佈局和外觀。
+        這些樣式會應用到所有繼承此樣板的頁面。
+    #}
+    <style>
+        /* ===== 整體佈局 ===== */
+        body {
+            font-family: "Microsoft JhengHei", sans-serif; /* 設定網站預設字體 */
+            background: linear-gradient(135deg, #f0fdf4 0%, #d9f7e9 100%); /* 設定漸層背景 */
+            color: #2f4f4f; /* 設定預設文字顏色 */
+            margin: 0; /* 移除 body 的預設外邊距 */
+            min-height: 100vh; /* 確保 body 至少和視窗一樣高 */
+            display: flex; /* 使用 Flexbox 佈局 */
+            flex-direction: column; /* 讓子元素垂直排列 */
+        }
+
+        /* ===== 頂部導覽列 (Navbar) ===== */
+        .navbar {
+            position: fixed; /* 將導覽列固定在視窗頂部 */
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px; /* 固定高度 */
+            display: flex; /* 使用 Flexbox 來對齊內部項目 */
+            align-items: center; /* 垂直置中 */
+            justify-content: flex-start; /* 水平靠左對齊 */
+            padding: 0 1rem; /* 左右內邊距 */
+            background: #116f6e; /* 背景色 */
+            color: #fff; /* 文字顏色 */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .15); /* 底部陰影 */
+            z-index: 1000; /* 確保導覽列在最上層 */
+        }
+        .navbar .brand {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 1px; /* 品牌文字樣式 */
+        }
+        .nav-toggle {
+            background: none; /* 移除背景 */
+            border: none; /* 移除邊框 */
+            color: #fff; /* 圖示顏色 */
+            font-size: 1.6rem;
+            cursor: pointer; /* 滑鼠指標變為手形 */
+            width: 40px;
+            height: 40px;
+            display: flex; /* 使用 Flexbox 將漢堡選單圖示置中 */
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem; /* 與右側品牌文字的間距 */
+            border-radius: 4px;
+            line-height: 1;
+            padding: 0;
+        }
+
+        /* ===== 側邊欄 (Sidebar) ===== */
+        .sidebar {
+            position: fixed; /* 將側邊欄固定在視窗左側 */
+            top: 56px; /* 從導覽列下方開始 */
+            left: 0;
+            height: calc(100vh - 56px); /* 高度為視窗高度減去導覽列高度 */
+            width: 220px; /* 側邊欄寬度 */
+            background: #66bfa6; /* 背景色 */
+            color: #fff; /* 文字顏色 */
+            overflow-y: auto; /* 當內容過多時，顯示垂直滾動條 */
+            transform: translateX(-100%); /* 預設狀態下，將側邊欄向左移出畫面外 */
+            transition: transform .3s ease; /* 為 transform 屬性設定平滑的過渡動畫 */
+            z-index: 900; /* 層級低於導覽列，但高於主要內容 */
+        }
+        /* 當側邊欄擁有 'open' class 時的樣式 */
+        .sidebar.open {
+            transform: translateX(0); /* 將側邊欄移回畫面內，實現滑出效果 */
+        }
+        .sidebar ul {
+            list-style: none; /* 移除列表的項目符號 */
+            margin: 0;
+            padding: 0;
+        }
+        .sidebar li {
+            border-bottom: 1px solid rgba(255, 255, 255, .15); /* 每個列表項下方的分隔線 */
+        }
+        .sidebar a {
+            display: block; /* 讓整個連結區域都可以點擊 */
+            padding: 14px 20px; /* 內邊距 */
+            color: #fff;
+            text-decoration: none; /* 移除底線 */
+            transition: background .2s; /* 為背景色設定過渡動畫 */
+        }
+        .sidebar a:hover {
+            background: rgba(0, 0, 0, .1); /* 滑鼠懸停時的背景色 */
+        }
+
+        /* ===== 主要內容區 (Content) ===== */
+        .content {
+            flex: 1; /* 讓內容區填滿 body 中除了 header/footer 之外的剩餘空間 */
+            margin-top: 56px; /* 頂部留出導覽列的高度 */
+            padding: 1.5rem; /* 內邊距 */
+            transition: margin-left .3s ease; /* 為左邊距設定平滑的過渡動畫 */
+        }
+        /* 當內容區擁有 'shift' class 時的樣式 */
+        .content.shift {
+            margin-left: 220px; /* 將內容區向右推移，寬度等於側邊欄寬度 */
+        }
+
+        /* ===== 響應式設計 (RWD) ===== */
+        @media(max-width:700px) {
+            .sidebar {
+                width: 200px; /* 在小螢幕上，側邊欄可以窄一些 */
+            }
+            /* 在小螢幕上，當側邊欄滑出時，主要內容區不再向右推移 */
+            .content.shift {
+                margin-left: 0;
+            }
+        }
+    </style>
+    
+    {# 
+        定義一個空的 CSS 區塊。
+        子樣板可以在這裡插入它們自己專屬的 CSS 檔案。
+    #}
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <header class="navbar">
+        <button class="nav-toggle" onclick="toggleSidebar()">☰</button>
+        <span class="brand">中醫脈診醫療資訊系統</span>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <ul>
+            <li><a href="/">🏠 首頁</a></li>
+            <li><a href="/query">🔍 查詢資料</a></li>
+            <li><a href="/create">📝 建立資料</a></li>
+            <li><a href="/new-patient">➕ 新增病人</a></li>
+        </ul>
+    </nav>
+
+    <main id="mainContent" class="content">
+        {# 
+            定義主要的內容區塊。
+            所有子樣板的獨特內容都會被渲染到這個位置。
+        #}
+        {% block content %}{% endblock %}
+    </main>
+
+    <script>
+        /**
+         * 切換側邊欄的顯示與隱藏狀態。
+         */
+        function toggleSidebar() {
+            // 透過 ID 獲取側邊欄和主要內容區的 DOM 元素
+            const sidebar = document.getElementById('sidebar');
+            const main = document.getElementById('mainContent');
+            
+            // classList.toggle 會檢查元素是否已有該 class：
+            // - 如果有，就移除它。
+            // - 如果沒有，就新增它。
+            sidebar.classList.toggle('open');  // 切換側邊欄的 .open class
+            main.classList.toggle('shift');    // 切換主要內容區的 .shift class
+        }
+    </script>
+    
+    {# 
+        定義一個空的 JavaScript 區塊。
+        子樣板可以在這裡插入它們自己專屬的 JavaScript 檔案。
+    #}
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

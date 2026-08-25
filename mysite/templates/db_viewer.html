@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資料庫管理器</title>
+
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        #controls { margin-bottom: 20px; display: flex; align-items: center; gap: 20px;}
+        table { border-collapse: collapse; width: 100%; table-layout: auto; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; word-break: break-all;}
+        th { background-color: #f2f2f2; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        #loading { font-style: italic; color: #888; }
+        .action-btn { cursor: pointer; color: blue; text-decoration: underline; margin-right: 10px; }
+
+        /* 彈出式視窗 (Modal) 的背景遮罩 */
+        .modal {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            z-index: 1;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        /* 彈出式視窗的內容框 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* 垂直置中 */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
+
+        /* 表單內部群組樣式 */
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; }
+        .form-group input { width: 95%; padding: 8px; }
+    </style>
+</head>
+<body>
+    <h1>資料庫管理器</h1>
+
+    <div id="controls">
+        <div>
+            <label for="tableSelector">選擇表格：</label>
+            <select id="tableSelector">
+                <option value="">請選擇...</option>
+            </select>
+        </div>
+        <button id="addNewBtn" style="display: none;">新增紀錄</button>
+    </div>
+
+    <div id="dataTableContainer">
+        <p>請從上方選擇一個表格來檢視其內容。</p>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="modalTitle">編輯紀錄</h2>
+            <form id="modalForm">
+                <div id="formFields"></div>
+                <button type="submit">儲存</button>
+            </form>
+        </div>
+    </div>
+
+    {#
+        載入此頁面專屬的 JavaScript 檔案 (db_viewer.js)。
+        這個檔案包含了所有互動邏輯：獲取表格列表、顯示資料、處理按鈕點擊、控制彈出視窗等。
+        {{ url_for(...) }} 是 Flask (Jinja2) 的語法，會自動生成檔案的正確 URL。
+    #}
+    <script src="{{ url_for('static', filename='db_viewer.js') }}"></script>
+</body>
+</html>

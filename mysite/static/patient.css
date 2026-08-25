@@ -1,0 +1,74 @@
+/* --- 頁面主要內容容器樣式 --- */
+.patient-page .container {
+    max-width: 600px; /* 限制容器最大寬度 */
+    margin: 80px auto; /* 上下邊距 80px，左右自動，實現水平置中 */
+    background: #ffffffee; /* 帶有些許透明度的白色背景 */
+    padding: 40px 32px; /* 內邊距 */
+    border-radius: 12px; /* 圓角 */
+    box-shadow: 0 8px 20px rgba(0, 128, 96, .12); /* 淡綠色系的陰影 */
+}
+
+/* --- 頁面主標題 H1 樣式 --- */
+.patient-page h1 {
+    text-align: center; /* 文字置中 */
+    color: #116f6e; /* 標題顏色 */
+    margin-bottom: 32px; /* 與下方表單的間距 */
+}
+
+/* --- 表單標籤 (label) 與輸入框 (input) 的樣式 --- */
+.patient-page form label {
+    display: block; /* 讓標籤獨佔一行 */
+    margin-top: 18px; /* 與上方元素的間距 */
+    font-weight: 600; /* 字體加粗 */
+    color: #116f6e;
+}
+
+/* 表單輸入框 (input) 和下拉選單 (select) 的通用樣式 */
+.patient-page form input,
+.patient-page form select {
+    width: 100%; /* 寬度佔滿父容器 */
+    padding: 10px; /* 內邊距 */
+    margin-top: 6px; /* 與標籤的間距 */
+    font-size: 1rem; /* 字體大小 */
+    border: 1px solid #88c9b5; /* 邊框顏色 */
+    border-radius: 6px; /* 圓角 */
+    background: #fff; /* 背景色 */
+    transition: border-color .3s; /* 為邊框顏色變化設定 0.3 秒的平滑過渡動畫 */
+}
+
+/* 當輸入框或下拉選單獲得焦點 (focus) 時的樣式 */
+.patient-page form input:focus,
+.patient-page form select:focus {
+    border-color: #3ca88c; /* 邊框變為更深的綠色 */
+    outline: none; /* 移除瀏覽器預設的外框 */
+    background: #f0fdf4; /* 背景變為極淡的綠色 */
+    box-shadow: 0 0 5px rgba(60, 168, 140, .3); /* 加上柔和的綠色光暈效果 */
+}
+
+/* --- 送出按鈕樣式 --- */
+.patient-page button {
+    margin-top: 28px; /* 與上方元素的間距 */
+    padding: 12px 30px; /* 內邊距 */
+    font-size: 1rem; /* 字體大小 */
+    background: #3ca88c; /* 背景色 */
+    color: #fff; /* 文字顏色 */
+    border: none; /* 移除邊框 */
+    border-radius: 6px; /* 圓角 */
+    cursor: pointer; /* 滑鼠移上去時顯示為手形指標 */
+    /* 為背景色和變形效果設定平滑的過渡動畫 */
+    transition: background .3s, transform .2s;
+    box-shadow: 2px 4px 8px rgba(0, 128, 96, .12); /* 細微的陰影 */
+}
+
+/* 按鈕滑鼠懸停 (hover) 效果 */
+.patient-page button:hover {
+    background: #2f866d; /* 背景色變深 */
+    transform: scale(1.04); /* 按鈕稍微放大，產生互動感 */
+}
+
+/* --- 用於顯示成功或失敗訊息的區塊樣式 --- */
+.patient-page .message {
+    margin-top: 20px; /* 與按鈕的間距 */
+    text-align: center; /* 文字置中 */
+    font-weight: bold; /* 字體加粗 */
+}

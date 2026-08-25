@@ -1,0 +1,51 @@
+{# 這個檔案繼承自 'base.html' 樣板，會沿用基礎的頁面佈局與導覽列 #}
+{% extends 'base.html' %}
+
+{#
+    這是頁面的主要內容區塊。
+    所有此頁面獨有的 HTML 元素都應放在這裡。
+#}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>病人資料查詢系統</title>
+    {# 載入此頁面專屬的 CSS 樣式表 #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='query.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>病人資料查詢系統</h1>
+
+        <div class="search-area">
+            <label for="patientID">輸入病人的身分證字號：</label>
+            <input type="text" id="patientID" maxlength="10" placeholder="例如：A123456789">
+            <button onclick="queryPatient()">查詢</button>
+        </div>
+
+        <div id="loading-indicator" style="display:none;">
+            <p>正在查詢，請稍候...</p>
+        </div>
+
+        <div class="result" id="patientInfo"></div>
+
+        <div id="history-controls" style="display:none;">
+            <h2>病歷紀錄</h2>
+            <label for="historySelector">選擇看診日期與時間：</label>
+            <select id="historySelector"></select>
+        </div>
+
+        <div class="result" id="historyInfo"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+    <script src="{{ url_for('static', filename='query.js') }}"></script>
+</body>
+
+</html>
+{% endblock %}

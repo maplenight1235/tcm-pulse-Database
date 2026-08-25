@@ -1,0 +1,161 @@
+/*
+ * create.css — 「新增病歷」頁面的專屬樣式表。
+ * 整體採用 CSS Grid 佈局，實現一個響應式的多欄位表單。
+ */
+
+/* 設定整個「新增病歷」頁面的基礎背景色和內邊距 */
+.create-page {
+    background: #f6fbf8; /* 一個淡綠色的背景 */
+    padding: 18px 12px;
+}
+
+/* 頁面中的主要內容容器 */
+.create-page .container {
+    max-width: 1200px; /* 限制最大寬度，使其在大螢幕上不會過寬 */
+    margin: 36px auto; /* 上下邊距 36px，左右自動，實現水平置中 */
+    background: transparent; /* 容器背景透明，讓 .create-page 的背景色透出來 */
+    padding: 0;
+}
+
+/* 表單的網格 (Grid) 佈局容器 */
+.create-page .forms-grid {
+    display: grid; /* 啟用 CSS Grid 佈局 */
+    /* 在大螢幕上，建立三個等寬的欄位 */
+    grid-template-columns: repeat(3, 1fr); 
+    /* * 定義網格區域的名稱和佈局：
+     * 第一行：'common' 區域橫跨三欄。
+     * 第二行：分為 'cun', 'guan', 'chi' 三個區域。
+     * 第三行：'actions' 區域橫跨三欄。
+     */
+    grid-template-areas:
+        "common common common"
+        "cun guan chi"
+        "actions actions actions";
+    gap: 20px; /* 設定網格項目之間的間距 */
+    align-items: start; /* 網格項目在垂直方向上對齊頂部 */
+    padding: 18px;
+}
+
+/* 表單區塊（卡片）的通用樣式 */
+.create-page .form-box {
+    background: #ffffff; /* 卡片背景為白色 */
+    border: 1px solid #e1efe7; /* 淡綠色邊框 */
+    border-radius: 10px; /* 圓角 */
+    padding: 18px; /* 內邊距 */
+    box-shadow: 0 6px 18px rgba(17, 111, 110, 0.06); /* 淡綠色系的陰影，增加立體感 */
+}
+
+/* 將 HTML 元素指派到對應的網格區域 */
+.create-page .form-box.common {
+    grid-area: common; /* class 為 common 的 .form-box 放在 'common' 區域 */
+}
+#form-cun {
+    grid-area: cun; /* id 為 form-cun 的元素放在 'cun' 區域 */
+}
+#form-guan {
+    grid-area: guan; /* id 為 form-guan 的元素放在 'guan' 區域 */
+}
+#form-chi {
+    grid-area: chi; /* id 為 form-chi 的元素放在 'chi' 區域 */
+}
+.create-page .submit-wrapper {
+    grid-area: actions; /* class 為 submit-wrapper 的元素放在 'actions' 區域 */
+    text-align: center; /* 讓內部的按鈕置中 */
+}
+
+/* 卡片內 H2 標題的樣式 */
+.create-page .form-box h2 {
+    margin: 0 0 10px; /* 底部邊距 10px */
+    color: #116f6e; /* 標題顏色 */
+    font-size: 1.1rem; /* 字體大小 */
+    text-align: left; /* 文字靠左對齊 */
+}
+
+/* 表單欄位的標籤 (label) 樣式 */
+.create-page .form-box label {
+    display: block; /* 讓標籤獨佔一行 */
+    font-weight: 600; /* 字體加粗 */
+    color: #116f6e;
+    margin-top: 10px; /* 與上方元素的間距 */
+    font-size: 0.95rem;
+}
+
+/* 表單輸入框 (input, select, textarea) 的通用樣式 */
+.create-page .form-box input,
+.create-page .form-box select,
+.create-page .form-box textarea {
+    width: 100%; /* 寬度佔滿父容器 */
+    padding: 8px 10px; /* 內邊距 */
+    margin-top: 6px; /* 與標籤的間距 */
+    border: 1px solid #cfe6dd; /* 邊框顏色 */
+    border-radius: 6px; /* 圓角 */
+    box-sizing: border-box; /* 確保 padding 和 border 不會增加元素的總寬度 */
+    font-size: 0.95rem;
+}
+
+/* 當輸入框獲得焦點 (focus) 時的樣式 */
+.create-page .form-box input:focus,
+.create-page .form-box select:focus,
+.create-page .form-box textarea:focus {
+    outline: none; /* 移除預設的藍色外框 */
+    border-color: #3ca88c; /* 邊框變為更深的綠色 */
+    background: #f0fdf4; /* 背景變為極淡的綠色 */
+    box-shadow: 0 0 6px rgba(60, 168, 140, 0.08); /* 加上細微的陰影 */
+}
+
+/* 送出按鈕的樣式 */
+.create-page .submit-wrapper button {
+    background: #3ca88c; /* 背景色 */
+    color: #fff; /* 文字顏色 */
+    padding: 10px 26px; /* 內邊距 */
+    border-radius: 8px; /* 圓角 */
+    border: none; /* 移除邊框 */
+    font-size: 1rem;
+    cursor: pointer; /* 滑鼠移上去時顯示為手形指標 */
+}
+
+/* 滑鼠懸停 (hover) 在按鈕上時的樣式 */
+.create-page .submit-wrapper button:hover {
+    background: #2b8c72; /* 背景色變深 */
+}
+
+/* 隱藏數字輸入框 (number input) 預設的上下微調箭頭，讓外觀更簡潔 */
+.create-page input[type="number"] {
+    -moz-appearance: textfield; /* 針對 Firefox */
+}
+.create-page input[type="number"]::-webkit-outer-spin-button,
+.create-page input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* 針對 Chrome, Safari, Edge */
+    margin: 0;
+}
+
+/* --- 響應式網頁設計 (RWD) --- */
+
+/* 當螢幕寬度小於等於 1024px 時，套用此樣式 */
+@media (max-width: 1024px) {
+    .create-page .forms-grid {
+        /* 網格變為兩欄 */
+        grid-template-columns: repeat(2, 1fr);
+        /* 重新定義網格區域佈局，讓 'chi' 獨佔一行 */
+        grid-template-areas:
+            "common common"
+            "cun guan"
+            "chi chi"
+            "actions actions";
+    }
+}
+
+/* 當螢幕寬度小於等於 720px 時 (例如手機)，套用此樣式 */
+@media (max-width: 720px) {
+    .create-page .forms-grid {
+        /* 網格變為單欄 */
+        grid-template-columns: 1fr;
+        /* 所有區域都各自獨佔一行，垂直排列 */
+        grid-template-areas:
+            "common"
+            "cun"
+            "guan"
+            "chi"
+            "actions";
+    }
+}

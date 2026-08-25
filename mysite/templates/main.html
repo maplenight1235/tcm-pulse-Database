@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{# lang="zh-Hant" 指定網頁的主要語言為繁體中文 #}
+<html lang="zh-Hant">
+
+<head>
+    {# 設定網頁使用 UTF-8 編碼，以正確顯示包含中文在內的各種字元 #}
+    <meta charset="UTF-8">
+    
+    {# 設定在瀏覽器標籤頁上顯示的網頁標題 #}
+    <title>中醫脈診醫療資訊系統</title>
+    
+    {# 
+        載入外部 CSS 樣式表。
+        {{ url_for('static', filename='main.css') }} 是 Flask (Jinja2) 的語法，
+        它會自動生成指向 'static' 文件夾中 'main.css' 檔案的正確 URL。
+    #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>中醫脈診醫療資訊系統</h1>
+        
+        <div class="buttons">
+            <button onclick="goTo('query')">查詢資料</button>
+            <button onclick="goTo('create')">建立資料</button>
+            <button onclick="goTo('new-patient')">新增病人</button>
+        </div>
+    </div>
+    
+    {# 
+        在頁面底部載入外部 JavaScript 檔案。
+        這確保在執行腳本時，頁面上的 HTML 元素都已經被載入。
+    #}
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+{# 這個檔案繼承自 'base.html' 樣板，會沿用基礎的頁面佈局與樣式 #}
+{% extends 'base.html' %}
+
+{# 設定此頁面在瀏覽器標籤頁上顯示的專屬標題 #}
+{% block title %}新增病人資料{% endblock %}
+
+{#
+    在這個區塊中載入此頁面專用的 CSS 檔案 (patient.css)。
+    這樣可以確保樣式只對此頁面生效，不會影響網站其他部分。
+#}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='patient.css') }}">
+{% endblock %}
+
+
+{# 這是頁面的主要內容區塊 #}
+{% block content %}
+<div class="patient-page">
+    <div class="container">
+        <h1>新增病人基本資料</h1>
+
+        <form id="patientForm">
+            <label for="ID">身分證號：</label>
+            <input type="text" id="ID" name="ID" maxlength="10" required pattern="[A-Z][12][0-9]{8}"
+                title="格式：A123456789">
+
+            <label for="name">姓名：</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="gender">性別：</label>
+            <select id="gender" name="gender" required>
+                <option value="" selected disabled>請選擇</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+
+            <label for="age">年齡：</label>
+            <input type="number" id="age" name="age" min="0" max="130" required>
+
+            <label for="phone">電話：</label>
+            <input type="tel" id="phone" name="phone" maxlength="10" pattern="[0-9]{10}" title="10 位數字" required>
+
+            <button type="submit">送出</button>
+
+            <div class="message" id="msgArea"></div>
+        </form>
+    </div>
+</div>
+
+{#
+    載入此頁面專屬的 JavaScript 檔案 (patient.js)。
+    這個檔案包含了處理表單提交、與後端 API 互動的邏輯。
+#}
+<script src="{{ url_for('static', filename='patient.js') }}"></script>
+{% endblock %}

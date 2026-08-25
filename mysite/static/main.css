@@ -1,0 +1,93 @@
+/* --- 整體頁面基礎樣式 --- */
+body {
+    /* 設定字體，優先使用微軟正黑體，若無則使用通用無襯線字體 */
+    font-family: "Microsoft JhengHei", sans-serif;
+    /* 設定一個從左上到右下的漸層背景色 */
+    background: linear-gradient(135deg, #f0fdf4 0%, #d9f7e9 100%);
+    /* 設定預設文字顏色 */
+    color: #2f4f4f;
+    /* 移除 body 預設的外邊距 */
+    margin: 0;
+    /* 確保 body 至少和視窗一樣高，讓背景能完整覆蓋 */
+    min-height: 100vh;
+}
+
+/* --- 主要內容容器樣式 --- */
+.container {
+    /* 上下邊距 100px，左右自動，使其水平置中 */
+    margin: 100px auto;
+    /* 讓容器內的文字置中 */
+    text-align: center;
+    /* 設定帶有 90% 不透明度的白色背景 */
+    background-color: rgba(255, 255, 255, 0.9);
+    /* 設定內邊距 */
+    padding: 50px 60px;
+    /* 設定圓角 */
+    border-radius: 20px;
+    /* 加上陰影效果，增加立體感 */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+    /* 限制容器的最大寬度 */
+    max-width: 500px;
+    /* 容器寬度為父層的 90% */
+    width: 90%;
+    /* 毛玻璃效果，讓容器後方的背景模糊化 */
+    backdrop-filter: blur(5px);
+}
+
+/* --- 標題 h1 樣式 --- */
+h1 {
+    font-size: 2.6em; /* 字體大小 */
+    color: #116f6e; /* 標題顏色 */
+    margin-bottom: 30px; /* 與下方元素的間距 */
+    letter-spacing: 1px; /* 字元間距 */
+}
+
+/* --- 按鈕群組容器樣式 --- */
+.buttons {
+    /* 使用 Flexbox 佈局 */
+    display: flex;
+    /* 將子項目（按鈕）改為垂直排列 */
+    flex-direction: column;
+    /* 設定子項目之間的間距 */
+    gap: 18px;
+    margin-top: 25px; /* 與標題的間距 */
+}
+
+/* --- 按鈕通用樣式 --- */
+.buttons button {
+    /* 設定從左到右的漸層背景色 */
+    background: linear-gradient(to right, #66bfa6, #3ca88c);
+    color: white; /* 文字顏色 */
+    border: none; /* 移除邊框 */
+    padding: 14px 28px; /* 內邊距 */
+    font-size: 1.1em; /* 字體大小 */
+    border-radius: 10px; /* 圓角 */
+    cursor: pointer; /* 滑鼠移上去時顯示為手形指標 */
+    /* 為 transform 和 box-shadow 的變化設定平滑的過渡動畫效果 */
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1); /* 預設陰影 */
+}
+
+/* --- 按鈕滑鼠懸停 (hover) 效果 --- */
+.buttons button:hover {
+    /* 向上移動 2px 並放大 1.04 倍，產生浮起效果 */
+    transform: translateY(-2px) scale(1.04);
+    /* 陰影變得更深更廣，強化立體感 */
+    box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 響應式網頁設計 (RWD) --- */
+
+/* 當螢幕寬度小於等於 500px 時 (例如手機)，套用以下樣式 */
+@media (max-width: 500px) {
+    .container {
+        /* 縮小容器的內邊距，使其在小螢幕上看起來更合適 */
+        padding: 30px 20px;
+    }
+
+    .buttons button {
+        /* 縮小按鈕的字體大小和內邊距 */
+        font-size: 1em;
+        padding: 12px;
+    }
+}
