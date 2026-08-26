@@ -51,7 +51,7 @@
 ## 🗄️ 資料庫架構設計 (ERD)
 
 <div align="center">
-  <img src="ERD.jpg" alt="資料庫實體關係圖 (ERD)" width="800">
+  <img src="ERD.png" alt="資料庫實體關係圖 (ERD)" width="800">
 </div>
 
 本系統資料庫嚴格遵循第三正規化 (3NF) 設計，以最大限度減少資料冗餘並避免更新異常：
