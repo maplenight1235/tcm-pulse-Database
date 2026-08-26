@@ -7,7 +7,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Framework-Flask-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql&logoColor=white)](https://www.mysql.com/)
-
+**國立臺南大學資訊工程學系 115 級畢業專題 ｜ 專案編號：NUTN-CSIE-PRJ-115-010**
 </div>
 
 ---
@@ -15,6 +15,9 @@
 ## 專案簡介
 
 本專案為「中醫脈診醫療資訊系統」的雲端資料管理與網頁前端模組。系統基於 Python Flask 微框架開發，並搭配 MySQL 資料庫，提供視覺化的病歷查詢、建立與管理功能，旨在實現中醫診斷數據的雲端化與結構化儲存，並作為本地端診脈儀與 AI 分析引擎的強大後盾。
+
+## 展示影片
+[![Demo Video](https://img.shields.io/badge/▶_觀看展示影片-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/N_DbZlq5FkQ)
 
 ## 🛠 核心技術棧
 
