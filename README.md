@@ -14,7 +14,6 @@
 
 ## 專案簡介
 
-本專案為「中醫脈診醫療資訊系統」的雲端資料管理與網頁前端模組。系統基於 Python Flask 微框架開發，並搭配 MySQL 資料庫，提供視覺化的病歷查詢、建立與管理功能，旨在實現中醫診斷數據的雲端化與結構化儲存，並作為本地端診脈儀與 AI 分析引擎的強大後盾。
 
 傳統中醫脈診高度依賴醫師的主觀觸感經驗，長期面臨**缺乏客觀量測標準**、**可複製性低**與**教學門檻高**三大問題。本專題嘗試以嵌入式系統、訊號處理與 AI 技術，將脈診過程數位化、客觀化與標準化。
 
@@ -26,6 +25,9 @@
 | 自製診脈儀（韌體） | Raspberry Pi Pico 2 W + 氣動控制 + 壓力感測，模擬寸關尺三部與浮中沉三層按壓 | [blood-pulse-sampler](https://github.com/Doner357/blood-pulse-sampler) |
 | 本地端客戶端 | PyQt6 桌面程式：BLE 連線、即時繪圖、兩階段混合式 AI 分析、報告上傳 | [tcm-pulse-local-client](https://github.com/Mintszebra/tcm-pulse-local-client)|
 | **雲端網站與資料庫** | **Flask + MySQL，提供病歷建立、查詢與管理** | **本 repo**|
+
+本專案為「中醫脈診醫療資訊系統」的雲端資料管理與網頁前端模組。系統基於 Python Flask 微框架開發，並搭配 MySQL 資料庫，提供視覺化的病歷查詢、建立與管理功能，旨在實現中醫診斷數據的雲端化與結構化儲存，並作為本地端診脈儀與 AI 分析引擎的強大後盾。
+
 
 ## 展示影片
 [![Demo Video](https://img.shields.io/badge/▶_觀看展示影片-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/N_DbZlq5FkQ)
