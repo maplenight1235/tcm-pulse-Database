@@ -16,6 +16,17 @@
 
 本專案為「中醫脈診醫療資訊系統」的雲端資料管理與網頁前端模組。系統基於 Python Flask 微框架開發，並搭配 MySQL 資料庫，提供視覺化的病歷查詢、建立與管理功能，旨在實現中醫診斷數據的雲端化與結構化儲存，並作為本地端診脈儀與 AI 分析引擎的強大後盾。
 
+傳統中醫脈診高度依賴醫師的主觀觸感經驗，長期面臨**缺乏客觀量測標準**、**可複製性低**與**教學門檻高**三大問題。本專題嘗試以嵌入式系統、訊號處理與 AI 技術，將脈診過程數位化、客觀化與標準化。
+
+完整系統由四個部分組成，**本 repo 為其中的「本地端客戶端」**：
+
+| 組成 | 職責 | 位置 |
+| :--- | :--- | :--- |
+| 前置資料處理（離線） | 文獻脈波圖轉 CSV、資料擴增，產出標準脈象指紋數據庫 | [Pulse2CSV](https://github.com/Mintszebra/Pulse2CSV) |
+| 自製診脈儀（韌體） | Raspberry Pi Pico 2 W + 氣動控制 + 壓力感測，模擬寸關尺三部與浮中沉三層按壓 | [blood-pulse-sampler](https://github.com/Doner357/blood-pulse-sampler) |
+| **本地端客戶端** | **PyQt6 桌面程式：BLE 連線、即時繪圖、兩階段混合式 AI 分析、報告上傳** | **本 repo** |
+| 雲端網站與資料庫 | Flask + MySQL，提供病歷建立、查詢與管理 | [tcm-pulse-Database](https://github.com/maplenight1235/tcm-pulse-Database) |
+
 ## 展示影片
 [![Demo Video](https://img.shields.io/badge/▶_觀看展示影片-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/N_DbZlq5FkQ)
 
@@ -67,3 +78,18 @@
 ## ⚙️ 系統部署與整合
 * 本地端應用程式分析完畢後，會將結構化報告發送 HTTP POST 請求至本網站的 `/api/push-analysis` 暫存。
 * 多資料表寫入時（如提交病歷），後端嚴格執行資料庫事務，統一透過 `connection.commit()` 提交，確保跨表資料寫入的絕對一致性。
+
+## 參考文獻
+
+1. 《脈經》— 中國哲學書電子化計劃：<https://ctext.org/wiki.pl?if=gb&res=188522>
+2. Shu, J.-J., & Sun, Y. (2007). *Developing classification indices for Chinese pulse diagnosis*, 15(3).
+3. 衛生福利部中醫藥司 — 脈診波形：<https://dep.mohw.gov.tw/DOCMAP/cp-801-7124-108.html>
+4. 王桂茂，《自學診脈一本通〔圖解版〕》
+5. 張仲尹，《基於中醫把脈之脈象量測系統開發與分析》，台科大，2017
+6. 林康平，《以連續恆壓施壓為基礎之可攜式中醫脈診量測系統應用研究》，中醫藥年報第 27 期第 6 冊
+7. Zhao, Y., et al. *Wearable multichannel-active pressurized pulse sensing platform*
+8. 《臺灣中藥典》第四版 — 衛生福利部編印
+9. TCA9548A Datasheet：<https://www.ti.com/lit/ds/symlink/tca9548a.pdf>
+10. Raspberry Pi Pico 2 W Datasheet：<https://datasheets.raspberrypi.com/picow/pico-2-w-datasheet.pdf>
+11. XGZP6857D Datasheet：<https://cfsensor.com/wp-content/uploads/2022/11/XGZP6857D-Pressure-Sensor-V2.9.pdf>
+12. Building a Bluetooth GATT Server on the Pi Pico W：<https://vanhunteradams.com/Pico/BLE/GATT_Server.html>
