@@ -24,8 +24,8 @@
 | :--- | :--- | :--- |
 | 前置資料處理（離線） | 文獻脈波圖轉 CSV、資料擴增，產出標準脈象指紋數據庫 | [Pulse2CSV](https://github.com/Mintszebra/Pulse2CSV) |
 | 自製診脈儀（韌體） | Raspberry Pi Pico 2 W + 氣動控制 + 壓力感測，模擬寸關尺三部與浮中沉三層按壓 | [blood-pulse-sampler](https://github.com/Doner357/blood-pulse-sampler) |
-| **本地端客戶端** | **PyQt6 桌面程式：BLE 連線、即時繪圖、兩階段混合式 AI 分析、報告上傳** | **本 repo** |
-| 雲端網站與資料庫 | Flask + MySQL，提供病歷建立、查詢與管理 | [tcm-pulse-Database](https://github.com/maplenight1235/tcm-pulse-Database) |
+| 本地端客戶端 | PyQt6 桌面程式：BLE 連線、即時繪圖、兩階段混合式 AI 分析、報告上傳 | [tcm-pulse-local-client](https://github.com/Mintszebra/tcm-pulse-local-client)|
+| **雲端網站與資料庫** | **Flask + MySQL，提供病歷建立、查詢與管理** | **本 repo**|
 
 ## 展示影片
 [![Demo Video](https://img.shields.io/badge/▶_觀看展示影片-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/N_DbZlq5FkQ)
